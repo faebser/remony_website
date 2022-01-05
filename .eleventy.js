@@ -67,7 +67,8 @@ module.exports = function(eleventyConfig) {
   async function imageShortcode(src, alt, sizes) {
     let metadata = await Image(src, {
       widths: [ 600 ],
-      formats: ["jpeg"]
+      formats: ["jpeg"],
+	outputDir: "./_site/img/"
     });
 
     // You bet we throw an error on missing alt in `imageAttributes` (alt="" works okay)
@@ -99,7 +100,8 @@ module.exports = function(eleventyConfig) {
         const w = resizeTo( i, 400 );
         const im = await Image( i, {
           widths: [ w ],
-          formats: ["avif", "jpeg"]
+          formats: ["avif", "jpeg"],
+	outputDir: "./_site/img/"
         });
         
         return [im, Image.generateHTML(im, imageAttributes)];
